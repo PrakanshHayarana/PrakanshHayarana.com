@@ -1,34 +1,568 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Aura — Prakansh Hayarana</title>
+<meta name="description" content="Aura — an AI-native email client concept by Prakansh Hayarana. Explore projects and work by Prakansh Hayarana (PrakanshHayarana).">
+<meta name="keywords" content="Prakansh Hayarana, PrakanshHayarana, Hayarana Prakansh, Prakansh, Hayarana, Aura, Aura by Prakansh Hayarana, Prakansh Hayarana projects, Prakansh Hayarana portfolio">
+<meta name="author" content="Prakansh Hayarana">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://prakanshhayarana.github.io/PrakanshHayarana.com/">
 
-  <!-- Instant redirect to profile.html -->
-  <meta http-equiv="refresh" content="0; url=profile.html">
-  <link rel="canonical" href="https://prakanshhayarana.github.io/PrakanshHayarana.com/profile.html">
+<!-- Open Graph -->
+<meta property="og:title" content="Aura — Prakansh Hayarana">
+<meta property="og:description" content="Aura — an AI-native email client concept by Prakansh Hayarana.">
+<meta property="og:url" content="https://prakanshhayarana.github.io/PrakanshHayarana.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prakansh Hayarana">
 
-  <title>Prakansh Hayarana</title>
-  <meta name="description" content="Official website of Prakansh Hayarana. Explore projects, work, and profile.">
-  <meta name="author" content="Prakansh Hayarana">
-  <meta name="keywords" content="Prakansh Hayarana, Prakansh, Hayarana, Prakansh Hayarana portfolio, Prakansh Hayarana website">
-  <meta name="robots" content="index, follow">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aura — Prakansh Hayarana">
+<meta name="twitter:description" content="Aura — an AI-native email client concept by Prakansh Hayarana.">
 
-  <!-- Open Graph / Social Preview -->
-  <meta property="og:title" content="Prakansh Hayarana">
-  <meta property="og:description" content="Official website of Prakansh Hayarana. Explore projects, work, and profile.">
-  <meta property="og:url" content="https://prakanshhayarana.github.io/PrakanshHayarana.com/">
-  <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Prakansh Hayarana">
-  <meta name="twitter:description" content="Official website of Prakansh Hayarana. Explore projects, work, and profile.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { brand: '#3D81E3' },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      }
+    }
+  }
+</script>
 
-  <script>
-    window.location.replace("profile.html");
-  </script>
+<style>
+  html, body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background-color: #0c0c0c; }
+  ::selection { background-color: rgba(61,129,227,0.3); }
+
+  .liquid-glass {
+    background: rgba(255,255,255,0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    position: relative; overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .shiny-headline {
+    background-image: linear-gradient(to right, #091020 0%, #0B2551 12.5%, #A4F4FD 32.5%, #00d2ff 50%, #0B2551 67.5%, #091020 87.5%, #091020 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent; -webkit-text-fill-color: transparent;
+    filter: url(#c3-noise);
+    animation: shiny 6s linear infinite;
+  }
+  @keyframes shiny {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* entrance animation helpers, replacing framer-motion */
+  .fade-up {
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { opacity: 0; animation: fadeIn 0.6s ease-out forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .inview { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1); }
+  .inview.shown { opacity: 1; transform: translateY(0); }
+
+  /* ---------- Pricing (custom, non-Tailwind) ---------- */
+  .c3-pricing-section { position: relative; padding: 40px 20px 80px; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
+  .c3-watermark-container { position: relative; width: 100%; max-width: 1100px; text-align: center; margin-top: 40px; z-index: 2; }
+  .c3-watermark-main { font-size: 9rem; font-weight: 800; line-height: 0.9; letter-spacing: -0.05em; filter: url(#c3-noise-pricing); display: flex; flex-direction: column; align-items: center; }
+  .c3-watermark-line-1 { color: #fff; }
+  .c3-watermark-line-2 {
+    background: linear-gradient(to right, #091020 0%, #0B2551 25%, #A4F4FD 65%, #00d2ff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  }
+  .c3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; max-width: 1100px; margin-top: 60px; transform: translateX(20px); position: relative; z-index: 3; }
+  .c3-card {
+    background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4));
+    backdrop-filter: blur(14px) brightness(0.91);
+    border: 1px solid rgba(255,255,255,1);
+    border-radius: 44px; padding: 50px 24px; min-height: 580px;
+    display: flex; flex-direction: column;
+    transition: all 0.6s cubic-bezier(.22,1,.36,1);
+    overflow: hidden; position: relative;
+  }
+  .c3-card::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+    pointer-events: none;
+  }
+  .c3-card:hover { background: rgba(15,15,15,0.6); border-color: rgba(34,211,238,0.7); transform: translateY(-12px) scale(1.01); }
+  .c3-card-pro { background: linear-gradient(135deg, rgba(0,0,0,0.85), rgba(0,0,0,0.55)); }
+  .c3-tier-small { font-size: 1.1rem; font-weight: 400; color: rgba(255,255,255,0.6); }
+  .c3-tier-large { font-size: 2.8rem; font-weight: 500; letter-spacing: -0.02em; color: #fff; margin-top: 8px; }
+  .c3-desc { font-size: 0.88rem; color: rgba(255,255,255,0.45); min-height: 3.2em; margin-top: 16px; margin-bottom: 40px; line-height: 1.5; }
+  .c3-list { list-style: none; margin: 0; padding: 0; }
+  .c3-list li { display:flex; align-items:flex-start; gap: 14px; font-size: 0.92rem; color: rgba(255,255,255,0.8); margin-bottom: 18px; line-height: 1.4; }
+  .c3-check { width:28px; height:28px; border-radius:50%; background: rgba(255,255,255,0.15); display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .c3-btn { background:#fff; color:#000; padding: 10px 32px; border-radius: 100px; font-weight:600; font-size: 0.88rem; margin-top:auto; border:none; cursor:pointer; align-self:center; transition: all 0.3s cubic-bezier(.22,1,.36,1); }
+  .c3-btn:hover { background:#f5f5f5; transform:scale(1.02); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
+  .c3-toggle-wrap { display:flex; align-items:center; justify-content:flex-end; gap:12px; width:100%; max-width:1100px; margin-top:32px; padding-right:20px; }
+  .c3-toggle { width:52px; height:28px; background:#fff; border-radius:100px; position:relative; cursor:pointer; border:none; transition: background 0.3s cubic-bezier(.4,0,.2,1); padding:0; }
+  .c3-toggle-knob { width:20px; height:20px; background:#000; border-radius:50%; position:absolute; top:4px; left:4px; transition: all 0.3s cubic-bezier(.4,0,.2,1); }
+  .c3-toggle.active { background: rgba(255,255,255,0.2); }
+  .c3-toggle.active .c3-toggle-knob { transform: translateX(24px); background:#fff; }
+
+  @media (max-width: 1024px) {
+    .c3-watermark-main { font-size: 3.5rem; filter: none; }
+    .c3-watermark-line-2 { background: none; -webkit-text-fill-color: #00d2ff; color: #00d2ff; }
+    .c3-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; transform: none; width: 100vw; padding: 0 20px; gap: 16px; scrollbar-width: none; }
+    .c3-grid::-webkit-scrollbar { display: none; }
+    .c3-card { flex: 0 0 320px; scroll-snap-align: center; }
+    .c3-toggle-wrap { justify-content: center; padding-right: 0; }
+  }
+</style>
 </head>
-<body>
+<body class="relative min-h-screen overflow-x-hidden bg-[#0c0c0c] text-white">
+
+<!-- background video placeholder -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+  <video autoplay loop muted playsinline class="w-full h-full object-cover pointer-events-none" src="aura-background.mp4"></video>
+</div>
+
+<!-- vertical guide lines -->
+<div class="hidden md:block pointer-events-none fixed inset-y-0 left-1/2 -translate-x-[calc(50%+36rem)] w-px bg-white/10 z-[5]"></div>
+<div class="hidden md:block pointer-events-none fixed inset-y-0 left-1/2 translate-x-[calc(-50%+36rem)] w-px bg-white/10 z-[5]"></div>
+
+<!-- root noise filter -->
+<svg width="0" height="0" style="position:absolute">
+  <filter id="c3-noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
+    <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0" />
+    <feComposite in2="SourceGraphic" operator="in" result="noise" />
+    <feBlend in="SourceGraphic" in2="noise" mode="multiply" />
+  </filter>
+</svg>
+
+<!-- pricing noise filter -->
+<svg width="0" height="0" style="position:absolute">
+  <filter id="c3-noise-pricing">
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" stitchTiles="stitch" />
+    <feComponentTransfer><feFuncA type="linear" slope="0.075" /></feComponentTransfer>
+    <feComposite in2="SourceGraphic" operator="in" result="noise" />
+    <feBlend in="SourceGraphic" in2="noise" mode="overlay" />
+  </filter>
+</svg>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="relative z-10 max-w-6xl mx-auto px-6 h-20 flex items-center justify-between fade-in">
+  <svg viewBox="0 0 256 256" fill="#fff" class="w-8 h-8">
+    <path d="M 0 128 C 70.692 128 128 185.308 128 256 L 64 256 C 64 220.654 35.346 192 0 192 Z M 256 192 C 220.654 192 192 220.654 192 256 L 128 256 C 128 185.308 185.308 128 256 128 Z M 128 0 C 128 70.692 70.692 128 0 128 L 0 64 C 35.346 64 64 35.346 64 0 Z M 192 0 C 192 35.346 220.654 64 256 64 L 256 128 C 185.308 128 128 70.692 128 0 Z"/>
+  </svg>
+
+  <div class="hidden md:flex gap-8">
+    <a href="#" class="text-white/70 text-sm font-medium hover:text-white">Solutions</a>
+    <a href="#" class="text-white/70 text-sm font-medium hover:text-white">Pricing</a>
+    <a href="#" class="text-white/70 text-sm font-medium hover:text-white">Blog</a>
+    <a href="#" class="text-white/70 text-sm font-medium hover:text-white">Documentation</a>
+    <a href="#" class="text-white/70 text-sm font-medium hover:text-white">Careers</a>
+  </div>
+
+  <button class="hidden md:inline-flex group items-center justify-center gap-2 rounded-full bg-white text-black font-medium text-sm px-5 py-3 transition-all hover:bg-white/90 active:scale-[0.98]">
+    <svg viewBox="0 0 384 512" fill="currentColor" class="w-4 h-4"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+    Download Aura
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 transition-transform group-hover:translate-x-[1px]"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </button>
+
+  <button class="md:hidden w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-white/80"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="relative z-10 pt-16 md:pt-28 pb-20 text-center flex flex-col items-center px-6">
+  <h1 class="fade-up text-4xl md:text-7xl font-semibold tracking-tight leading-[0.9]" style="animation-delay:0.3s">
+    <span class="block text-white">Your email.</span>
+    <span class="block shiny-headline">Revitalized</span>
+  </h1>
+
+  <p class="fade-up mt-8 text-white/60 max-w-md text-base leading-[1.5]" style="animation-delay:0.5s">
+    Aura is the premier inbox platform for the current era. It leverages powerful AI to organize, prioritize, and refine your messages into total clarity.
+  </p>
+
+  <div class="fade-up mt-8 flex flex-col items-center gap-3" style="animation-delay:0.7s">
+    <button class="group inline-flex items-center justify-center gap-2 rounded-full bg-white text-black font-medium text-sm px-5 py-3 transition-all hover:bg-white/90 active:scale-[0.98]">
+      <svg viewBox="0 0 384 512" fill="currentColor" class="w-4 h-4"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      Download Aura
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 transition-transform group-hover:translate-x-[1px]"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <span class="text-xs text-white/40">Download for Intel / Apple Silicon</span>
+  </div>
+</section>
+
+<!-- ============ MENU BAR STRIP ============ -->
+<div class="fade-in relative z-10 w-full h-10 bg-black/40 backdrop-blur-md border-t border-b border-white/10" style="animation-delay:0.9s">
+  <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between text-xs">
+    <div class="flex items-center gap-4">
+      <svg viewBox="0 0 384 512" fill="currentColor" class="w-3.5 h-3.5"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      <span class="font-bold text-white">Aura</span>
+      <span class="text-white/60">File</span>
+      <span class="text-white/60">Edit</span>
+      <span class="text-white/60">View</span>
+      <span class="text-white/60 hidden sm:inline">Go</span>
+      <span class="text-white/60 hidden md:inline">Window</span>
+      <span class="text-white/60 hidden md:inline">Help</span>
+    </div>
+    <div class="flex items-center gap-2 text-white/60">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span>Wed May 6 1:09 PM</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ INBOX MOCKUP ============ -->
+<div class="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24">
+  <div class="inview relative rounded-2xl overflow-hidden border border-white/10 bg-[#0e1014]/90 backdrop-blur-2xl">
+    <div class="h-10 flex items-center px-4 border-b border-white/10 relative">
+      <div class="flex gap-2">
+        <span class="w-3 h-3 rounded-full" style="background:#ff5f57"></span>
+        <span class="w-3 h-3 rounded-full" style="background:#febc2e"></span>
+        <span class="w-3 h-3 rounded-full" style="background:#28c840"></span>
+      </div>
+      <span class="absolute left-1/2 -translate-x-1/2 text-xs text-white/50">Aura — Inbox</span>
+    </div>
+
+    <div class="grid grid-cols-12 h-[520px]">
+      <!-- sidebar -->
+      <div class="col-span-3 border-r border-white/10 bg-black/30 p-4 hidden md:block">
+        <button class="w-full rounded-lg bg-white text-black text-xs font-semibold px-3 py-2 flex items-center justify-center gap-2 mb-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M12 3l1.9 5.8L20 10.5l-6.1 1.7L12 18l-1.9-5.8L4 10.5l6.1-1.7L12 3z"/></svg>
+          Compose with Aura
+        </button>
+        <div class="space-y-1 text-xs">
+          <div class="flex items-center justify-between px-2 py-1.5 rounded-md bg-white/10 text-white">
+            <span>Inbox</span><span class="text-white/40">12</span>
+          </div>
+          <div class="flex items-center justify-between px-2 py-1.5 rounded-md text-white/60 hover:bg-white/5">
+            <span>Starred</span><span class="text-white/40">3</span>
+          </div>
+          <div class="flex items-center justify-between px-2 py-1.5 rounded-md text-white/60 hover:bg-white/5">
+            <span>Sent</span>
+          </div>
+          <div class="flex items-center justify-between px-2 py-1.5 rounded-md text-white/60 hover:bg-white/5">
+            <span>Drafts</span><span class="text-white/40">2</span>
+          </div>
+          <div class="flex items-center justify-between px-2 py-1.5 rounded-md text-white/60 hover:bg-white/5">
+            <span>Archive</span>
+          </div>
+          <div class="flex items-center justify-between px-2 py-1.5 rounded-md text-white/60 hover:bg-white/5">
+            <span>Trash</span>
+          </div>
+        </div>
+        <div class="mt-6">
+          <div class="text-[10px] uppercase tracking-wider text-white/40 mb-2 px-2">Labels</div>
+          <div class="space-y-1 text-xs text-white/70">
+            <div class="flex items-center gap-2 px-2 py-1"><span class="w-2 h-2 rounded-full" style="background:#00d2ff"></span>Work</div>
+            <div class="flex items-center gap-2 px-2 py-1"><span class="w-2 h-2 rounded-full" style="background:#A4F4FD"></span>Personal</div>
+            <div class="flex items-center gap-2 px-2 py-1"><span class="w-2 h-2 rounded-full" style="background:#f59e0b"></span>Travel</div>
+            <div class="flex items-center gap-2 px-2 py-1"><span class="w-2 h-2 rounded-full" style="background:#10b981"></span>Finance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- message list -->
+      <div class="col-span-12 md:col-span-4 border-r border-white/10 overflow-y-auto">
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-white/10 text-white/40 text-xs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Search mail
+        </div>
+        <div class="px-4 py-3 border-b border-white/5 bg-white/5 cursor-pointer">
+          <div class="flex items-center justify-between"><span class="text-xs font-semibold text-white">Linear</span><span class="text-[10px] text-white/30">9:41 AM</span></div>
+          <div class="text-xs text-white/80 mt-0.5">Weekly product digest</div>
+          <div class="text-[11px] text-white/40 truncate mt-0.5">Your team shipped 23 issues this week...</div>
+        </div>
+        <div class="px-4 py-3 border-b border-white/5 hover:bg-white/[0.02] cursor-pointer">
+          <div class="flex items-center justify-between"><span class="text-xs font-semibold text-white">Sophia Chen</span><span class="text-[10px] text-white/30">8:12 AM</span></div>
+          <div class="text-xs text-white/80 mt-0.5">Re: Q3 roadmap review</div>
+          <div class="text-[11px] text-white/40 truncate mt-0.5">Thanks for sending the deck over. I had a few thoughts...</div>
+        </div>
+        <div class="px-4 py-3 border-b border-white/5 hover:bg-white/[0.02] cursor-pointer">
+          <div class="flex items-center justify-between"><span class="text-xs text-white/70">Figma</span><span class="text-[10px] text-white/30">Yesterday</span></div>
+          <div class="text-xs text-white/80 mt-0.5">Marcus commented on your file</div>
+          <div class="text-[11px] text-white/40 truncate mt-0.5">Love the new direction on the landing hero.</div>
+        </div>
+        <div class="px-4 py-3 border-b border-white/5 hover:bg-white/[0.02] cursor-pointer">
+          <div class="flex items-center justify-between"><span class="text-xs text-white/70">Stripe</span><span class="text-[10px] text-white/30">Yesterday</span></div>
+          <div class="text-xs text-white/80 mt-0.5">Payout of $12,480.00 sent</div>
+          <div class="text-[11px] text-white/40 truncate mt-0.5">Your payout is on its way to your bank...</div>
+        </div>
+        <div class="px-4 py-3 border-b border-white/5 hover:bg-white/[0.02] cursor-pointer">
+          <div class="flex items-center justify-between"><span class="text-xs text-white/70">Vercel</span><span class="text-[10px] text-white/30">Mon</span></div>
+          <div class="text-xs text-white/80 mt-0.5">Deployment ready for aura-web</div>
+          <div class="text-[11px] text-white/40 truncate mt-0.5">Preview is live at aura-web-g3f.vercel.app</div>
+        </div>
+        <div class="px-4 py-3 border-b border-white/5 hover:bg-white/[0.02] cursor-pointer">
+          <div class="flex items-center justify-between"><span class="text-xs text-white/70">GitHub</span><span class="text-[10px] text-white/30">Mon</span></div>
+          <div class="text-xs text-white/80 mt-0.5">[aura/core] PR #482 approved</div>
+          <div class="text-[11px] text-white/40 truncate mt-0.5">david-lim approved your pull request.</div>
+        </div>
+      </div>
+
+      <!-- reader -->
+      <div class="col-span-12 md:col-span-5 hidden md:flex flex-col">
+        <div class="flex items-center justify-between px-4 py-2 border-b border-white/10">
+          <div class="flex items-center gap-1">
+            <button class="w-7 h-7 rounded-md hover:bg-white/5 flex items-center justify-center text-white/60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg></button>
+            <button class="w-7 h-7 rounded-md hover:bg-white/5 flex items-center justify-center text-white/60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg></button>
+            <button class="w-7 h-7 rounded-md hover:bg-white/5 flex items-center justify-center text-white/60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><rect x="3" y="3" width="18" height="4"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/></svg></button>
+            <button class="w-7 h-7 rounded-md hover:bg-white/5 flex items-center justify-center text-white/60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+          </div>
+          <button class="w-7 h-7 rounded-md hover:bg-white/5 flex items-center justify-center text-white/60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+        </div>
+
+        <div class="p-4 overflow-y-auto text-sm">
+          <h3 class="text-base font-semibold text-white">Weekly product digest</h3>
+          <div class="flex items-center gap-2 mt-3">
+            <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#00d2ff] to-[#0B2551] flex items-center justify-center text-[11px] font-semibold text-white">L</div>
+            <div class="text-xs">
+              <div class="text-white">Linear</div>
+              <div class="text-white/40">to me · 9:41 AM</div>
+            </div>
+            <span class="ml-auto text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60">Work</span>
+          </div>
+
+          <div class="mt-4 liquid-glass rounded-lg p-3">
+            <div class="flex items-center gap-2 text-xs font-semibold" style="color:#A4F4FD">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M12 3l1.9 5.8L20 10.5l-6.1 1.7L12 18l-1.9-5.8L4 10.5l6.1-1.7L12 3z"/></svg>
+              Summary by Aura
+            </div>
+            <p class="text-xs text-white/70 mt-1.5 leading-relaxed">Your team closed 23 issues, merged 14 PRs, and shipped 2 features. Top contributor: Marcus. No action needed.</p>
+          </div>
+
+          <div class="mt-4 space-y-3 text-xs text-white/70 leading-relaxed">
+            <p>Hi team,</p>
+            <p>Here is your weekly digest of everything happening across your projects. This was a strong week with significant progress on the Q3 roadmap.</p>
+            <p>Twenty-three issues were closed, fourteen pull requests were merged, and two customer-facing features went out. The velocity trend continues to climb.</p>
+            <p>Let me know if you would like a deeper breakdown by project or contributor.</p>
+            <p class="text-white/50">— The Linear team</p>
+          </div>
+
+          <div class="mt-4 inline-flex items-center gap-2 text-xs text-white/60 border border-white/10 rounded-full px-3 py-1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3.5 h-3.5"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            digest-may-6.pdf
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FEATURE TRIAGE ============ -->
+<section class="relative z-10 max-w-6xl mx-auto px-6 py-20 md:py-28">
+  <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+    <div class="inview">
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+        <span class="text-sm text-white/70 font-medium">Triage</span>
+        <span class="px-2 py-0.5 rounded-full border border-white/10 text-white/50 text-xs">AI-native</span>
+      </div>
+      <h2 class="mt-5 text-3xl md:text-5xl font-semibold tracking-tight leading-[1.02]">Clear your inbox<br>in a single pass.</h2>
+      <p class="mt-6 text-white/60 text-base leading-[1.6] max-w-md">Aura reads every message, understands intent, and routes the noise away from the signal. Focus on what moves your day forward — the rest handles itself.</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="text-xs text-white/70 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03]">Auto-categorize</span>
+        <span class="text-xs text-white/70 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03]">Snooze for later</span>
+        <span class="text-xs text-white/70 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03]">Silent newsletters</span>
+        <span class="text-xs text-white/70 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03]">One-tap unsubscribe</span>
+      </div>
+    </div>
+
+    <div class="liquid-glass rounded-2xl p-5">
+      <div class="text-xs text-white/50 mb-4">Today · 42 messages triaged</div>
+      <div class="space-y-3">
+        <div class="liquid-glass rounded-lg p-3">
+          <div class="flex items-center justify-between text-sm"><span class="font-medium" style="color:#ffffff">Priority</span><span class="text-white/40 text-xs">4</span></div>
+          <div class="mt-1.5 text-xs text-white/50 space-y-0.5"><div>Sophia Chen — Q3 review</div><div>David Lim — contract signoff</div></div>
+        </div>
+        <div class="liquid-glass rounded-lg p-3">
+          <div class="flex items-center justify-between text-sm"><span class="font-medium" style="color:#e5e5e5">Follow-up</span><span class="text-white/40 text-xs">7</span></div>
+          <div class="mt-1.5 text-xs text-white/50 space-y-0.5"><div>Marcus — design review</div><div>Figma — comment thread</div></div>
+        </div>
+        <div class="liquid-glass rounded-lg p-3">
+          <div class="flex items-center justify-between text-sm"><span class="font-medium" style="color:#a3a3a3">Updates</span><span class="text-white/40 text-xs">18</span></div>
+          <div class="mt-1.5 text-xs text-white/50 space-y-0.5"><div>Vercel — deploy ready</div><div>GitHub — PR #482 merged</div></div>
+        </div>
+        <div class="liquid-glass rounded-lg p-3">
+          <div class="flex items-center justify-between text-sm"><span class="font-medium" style="color:#525252">Archived</span><span class="text-white/40 text-xs">13</span></div>
+          <div class="mt-1.5 text-xs text-white/50 space-y-0.5"><div>Stripe payout · Newsletter · Receipts</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGO CLOUD ============ -->
+<section class="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-20 text-center">
+  <div class="text-xs uppercase tracking-widest text-white/40">Trusted by the world's most thoughtful teams</div>
+  <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6">
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Linear</div>
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Vercel</div>
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Figma</div>
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Stripe</div>
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Ramp</div>
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Notion</div>
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Loom</div>
+    <div class="text-sm font-semibold tracking-tight text-white/50 hover:text-white">Arc</div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<!-- Note: names/companies below are fictional placeholders, not the real people named in the original spec -->
+<section class="relative z-10 max-w-6xl mx-auto px-6 py-20 md:py-28 border-t border-white/10">
+  <div class="grid md:grid-cols-3 gap-6">
+    <figure class="liquid-glass rounded-2xl p-6">
+      <blockquote class="text-sm text-white/80 leading-[1.6]">&ldquo;Aura gave our leadership team four hours of their week back. It reads like email from the future.&rdquo;</blockquote>
+      <figcaption class="mt-6 pt-5 border-t border-white/10">
+        <div class="text-sm font-semibold">Jordan Ashworth</div>
+        <div class="text-xs text-white/50">Group Product Manager</div>
+        <div class="text-xs text-white font-semibold tracking-wide uppercase">Novena</div>
+      </figcaption>
+    </figure>
+    <figure class="liquid-glass rounded-2xl p-6">
+      <blockquote class="text-sm text-white/80 leading-[1.6]">&ldquo;The command palette alone has changed how I process messages. I can't imagine going back to a traditional client.&rdquo;</blockquote>
+      <figcaption class="mt-6 pt-5 border-t border-white/10">
+        <div class="text-sm font-semibold">Priya Kanthala</div>
+        <div class="text-xs text-white/50">Senior Engineering Program Manager</div>
+        <div class="text-xs text-white font-semibold tracking-wide uppercase">Orbytal</div>
+      </figcaption>
+    </figure>
+    <figure class="liquid-glass rounded-2xl p-6">
+      <blockquote class="text-sm text-white/80 leading-[1.6]">&ldquo;Triage that actually understands context. Our team stopped dreading Monday morning inboxes.&rdquo;</blockquote>
+      <figcaption class="mt-6 pt-5 border-t border-white/10">
+        <div class="text-sm font-semibold">Felix Bramante</div>
+        <div class="text-xs text-white/50">Engineering Manager</div>
+        <div class="text-xs text-white font-semibold tracking-wide uppercase">Halcyon</div>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="c3-pricing-section">
+  <div class="c3-watermark-container">
+    <div class="c3-watermark-main">
+      <span class="c3-watermark-line-1">Your email.</span>
+      <span class="c3-watermark-line-2">Revitalized</span>
+    </div>
+  </div>
+
+  <div class="c3-grid">
+    <div class="c3-card">
+      <div class="c3-tier-small">Free</div>
+      <div class="c3-tier-large" data-monthly="Free" data-yearly="Free">Free</div>
+      <div class="c3-desc">For creators taking their first steps with Forma.</div>
+      <ul class="c3-list">
+        <li><span class="c3-check">✓</span>Up to 3 projects in the cloud</li>
+        <li><span class="c3-check">✓</span>Image export up to 1080p</li>
+        <li><span class="c3-check">✓</span>Basic editing tools</li>
+        <li><span class="c3-check">✓</span>Free templates and icons</li>
+        <li><span class="c3-check">✓</span>Access via web and mobile app</li>
+      </ul>
+      <button class="c3-btn">Choose Plan</button>
+    </div>
+
+    <div class="c3-card">
+      <div class="c3-tier-small">Standard</div>
+      <div class="c3-tier-large" data-monthly="$9,99/m" data-yearly="$99,99/y">$9,99/m</div>
+      <div class="c3-desc">For freelancers and small teams who need more freedom and flexibility.</div>
+      <ul class="c3-list">
+        <li><span class="c3-check">✓</span>Up to 50 projects in the cloud</li>
+        <li><span class="c3-check">✓</span>Export up to 4K</li>
+        <li><span class="c3-check">✓</span>Advanced editing toolkit</li>
+        <li><span class="c3-check">✓</span>Team collaboration (up to 5 members)</li>
+        <li><span class="c3-check">✓</span>Access to premium template library</li>
+      </ul>
+      <button class="c3-btn">Choose Plan</button>
+    </div>
+
+    <div class="c3-card c3-card-pro">
+      <div class="c3-tier-small">Pro</div>
+      <div class="c3-tier-large" data-monthly="$19,99/m" data-yearly="$199,99/y">$19,99/m</div>
+      <div class="c3-desc">For studios, agencies, and professional creators working with brands.</div>
+      <ul class="c3-list">
+        <li><span class="c3-check">✓</span>Unlimited projects</li>
+        <li><span class="c3-check">✓</span>Export up to 8K + animations</li>
+        <li><span class="c3-check">✓</span>AI-powered content generation tools</li>
+        <li><span class="c3-check">✓</span>Unlimited team members</li>
+        <li><span class="c3-check">✓</span>Brand customization</li>
+      </ul>
+      <button class="c3-btn">Choose Plan</button>
+    </div>
+  </div>
+
+  <div class="c3-toggle-wrap">
+    <span class="text-sm text-white/70">Yearly</span>
+    <button id="pricingToggle" class="c3-toggle" onclick="togglePricing()" aria-label="Toggle yearly pricing">
+      <span class="c3-toggle-knob"></span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="relative z-10 max-w-6xl mx-auto px-6 py-20 md:py-32">
+  <div class="liquid-glass relative overflow-hidden rounded-3xl px-8 py-16 md:py-24 text-center">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(600px circle at 50% 0%, rgba(255,255,255,0.15), transparent 70%); opacity:0.3"></div>
+    <div class="relative">
+      <h2 class="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.02]">Close the tabs.<br>Open your day.</h2>
+      <p class="mt-6 text-white/60 max-w-md mx-auto text-sm leading-[1.6]">Join thousands of builders, founders, and operators who treat email like a tool — not an obligation.</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <button class="group inline-flex items-center justify-center gap-2 rounded-full bg-white text-black font-medium text-sm px-5 py-3 transition-all hover:bg-white/90 active:scale-[0.98]">
+          <svg viewBox="0 0 384 512" fill="currentColor" class="w-4 h-4"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          Download Aura
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 transition-transform group-hover:translate-x-[1px]"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="group rounded-full border border-white/15 text-white text-sm font-medium px-5 py-3 hover:bg-white/5 inline-flex items-center gap-1">
+          Talk to sales
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 transition-transform group-hover:translate-x-[1px]"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // pricing toggle
+  var yearly = false;
+  function togglePricing() {
+    yearly = !yearly;
+    document.getElementById('pricingToggle').classList.toggle('active', yearly);
+    document.querySelectorAll('.c3-tier-large').forEach(function(el) {
+      el.textContent = yearly ? el.getAttribute('data-yearly') : el.getAttribute('data-monthly');
+    });
+  }
+
+  // scroll-triggered fade-ups
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('shown');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.inview').forEach(function(el) { observer.observe(el); });
+</script>
+
 </body>
 </html>

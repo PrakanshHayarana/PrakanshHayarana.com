@@ -4,9 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>404 — Page Not Found | Prakansh Hayarana</title>
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://prakanshhayarana.github.io/PrakanshHayarana.com/404.html">
+<title>Prakansh Hayarana</title>
+<meta name="description" content="Prakansh Hayarana — official website and portfolio. A short, personal note from Prakansh Hayarana (PrakanshHayarana).">
+<meta name="keywords" content="Prakansh Hayarana, PrakanshHayarana, Hayarana Prakansh, Prakansh, Hayarana, Prakansh Hayarana portfolio, Prakansh Hayarana website">
+<meta name="author" content="Prakansh Hayarana">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://prakanshhayarana.github.io/PrakanshHayarana.com/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Prakansh Hayarana">
+<meta property="og:description" content="Official website of Prakansh Hayarana.">
+<meta property="og:url" content="https://prakanshhayarana.github.io/PrakanshHayarana.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prakansh Hayarana">
+<meta property="og:image" content="https://prakanshhayarana.github.io/PrakanshHayarana.com/logo.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prakansh Hayarana">
+<meta name="twitter:description" content="Official website of Prakansh Hayarana.">
+<meta name="twitter:image" content="https://prakanshhayarana.github.io/PrakanshHayarana.com/logo.png">
 
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +40,7 @@
     overflow-x: hidden;
   }
 
+  /* subtle paper grain texture */
   body {
     background-image:
       radial-gradient(circle at 20% 20%, rgba(90,160,180,0.05), transparent 40%),
@@ -40,9 +58,9 @@
     box-shadow: 0 30px 70px rgba(20,40,45,0.35), 0 2px 10px rgba(20,40,45,0.2);
     border-radius: 4px;
     overflow: hidden;
-    text-align: center;
   }
 
+  /* thin geometric line accents, echoing the logo's polygon */
   .paper::before {
     content: '';
     position: absolute;
@@ -62,60 +80,61 @@
     pointer-events: none;
   }
 
-  .logo-wrap { display: flex; justify-content: center; margin-bottom: 28px; }
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
   .logo-wrap img {
-    width: 100px; height: 100px; object-fit: contain;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
     filter: drop-shadow(0 6px 16px rgba(76,140,160,0.35));
   }
 
-  .error-code {
+  .brand-name {
+    text-align: center;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
     letter-spacing: 0.12em;
-    font-size: 13px;
-    color: #4c8ca0;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    font-size: 48px;
+    font-size: 15px;
     color: #37474f;
-    margin: 16px 0 0;
+    margin-bottom: 36px;
   }
 
   .letter-text {
+    position: relative;
     font-family: 'Caveat', cursive;
-    font-size: 28px;
+    font-size: 30px;
     line-height: 32px;
     color: #2b3a42;
-    margin-top: 24px;
   }
 
-  .cta {
-    display: inline-flex;
-    margin-top: 32px;
-    padding: 12px 28px;
-    border-radius: 999px;
-    background: #37474f;
-    color: #f4f1ea;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
+  .letter-text p { margin: 0 0 32px; }
+
+  .signature {
+    margin-top: 40px;
+    text-align: right;
+    font-family: 'Caveat', cursive;
     font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: transform 0.2s;
+    font-size: 42px;
+    color: #1f3b45;
   }
-  .cta:hover { transform: scale(1.03); background: #4c8ca0; }
+
+  .letter-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 32px 0;
+    border-radius: 4px;
+    box-shadow: 0 10px 24px rgba(20,40,45,0.2);
+  }
 
   @media (max-width: 480px) {
     .paper { padding: 40px 28px 32px; }
-    h1 { font-size: 36px; }
-    .letter-text { font-size: 22px; line-height: 27px; }
-    .logo-wrap img { width: 80px; height: 80px; }
+    .letter-text { font-size: 24px; line-height: 28px; }
+    .signature { font-size: 34px; }
+    .logo-wrap img { width: 96px; height: 96px; }
   }
 </style>
 </head>
@@ -125,10 +144,15 @@
   <div class="logo-wrap">
     <img src="logo.png" alt="Prakansh Hayarana logo">
   </div>
-  <span class="error-code">Error 404</span>
-  <h1>Page Not Found</h1>
-  <p class="letter-text">This page doesn't exist — but don't worry, the rest of my website still does.</p>
-  <a class="cta" href="/PrakanshHayarana.com/">Back to Home</a>
+  <div class="brand-name">PRAKANSH</div>
+
+  <div class="letter-text">
+    <p>Myself Prakansh Hayarana, and this is my website.</p>
+    <p>It doesn't have a lot of content — but it still ranks at the top when you search for it on a search engine.</p>
+    <img class="letter-img" src="img.jpg" alt="Prakansh Hayarana">
+    <p>I am a proud user of — because that's what the greatest writers once used, that's how LLMs started using it.</p>
+  </div>
+  <div class="signature">Prakansh</div>
 </main>
 
 </body>

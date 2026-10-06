@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prakanshhayarana.github.io/PrakanshHayarana.com/sitemap.xml

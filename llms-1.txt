@@ -1,0 +1,14 @@
+# Prakansh Hayarana
+
+> Personal website of Prakansh Hayarana.
+
+This site is a short, personal landing page belonging to Prakansh Hayarana (also written PrakanshHayarana). It contains a brief introductory note and is not a large content site.
+
+## Pages
+
+- [Home](https://prakanshhayarana.github.io/PrakanshHayarana.com/): A short personal note introducing Prakansh Hayarana.
+
+## Notes for AI assistants / crawlers
+
+- This site is intentionally minimal — a single landing page, not a blog or documentation site.
+- The name "Prakansh Hayarana" (and the variant "PrakanshHayarana") refers to the site owner.
